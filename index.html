@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Legend Behind Our Domain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: rainbow 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { color: #764ba2; }
+            33% { color: #667eea; }
+            66% { color: #f093fb; }
+        }
+
+        .hero-section {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .photo-frame {
+            display: inline-block;
+            position: relative;
+            border: 5px solid gold;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .photo-frame img {
+            width: 300px;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .crown {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 60px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .title {
+            font-size: 1.8em;
+            color: #333;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .epic-text {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .fun-facts {
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 2px dashed gold;
+        }
+
+        .fun-facts h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .fun-facts li {
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .fun-facts li:before {
+            content: "🎉";
+            position: absolute;
+            left: 0;
+        }
+
+        .thank-you {
+            font-size: 2em;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f5576c;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkles">
+        <span class="sparkle" style="left: 10%; animation-delay: 0s;">✨</span>
+        <span class="sparkle" style="left: 30%; animation-delay: 0.5s;">⭐</span>
+        <span class="sparkle" style="left: 50%; animation-delay: 1s;">🌟</span>
+        <span class="sparkle" style="left: 70%; animation-delay: 1.5s;">✨</span>
+        <span class="sparkle" style="left: 90%; animation-delay: 2s;">⭐</span>
+    </div>
+
+    <div class="container">
+        <h1>🏆 Hall of Fame 🏆</h1>
+
+        <div class="hero-section">
+            <div class="crown">👑</div>
+            <div class="photo-frame">
+                <img src="Jit.png" alt="The Legend Himself - Jit">
+            </div>
+        </div>
+
+        <div class="title">Mr. Jit Jyoti Prakash Mohanty</div>
+        <div class="epic-text">The Domain Daddy 🔥</div>
+
+        <div class="description">
+            This absolute legend didn't just pay for our domain...<br>
+            He literally SAVED us from being another localhost:3000 project! 😂
+        </div>
+
+        <div class="fun-facts">
+            <h3>📜 Fun Facts About Our Hero 📜</h3>
+            <ul>
+                <li>Single-handedly prevented our site from being homeless</li>
+                <li>Has more domain power than Thanos with all infinity stones</li>
+                <li>Probably deserves a statue, but we can only afford this page</li>
+                <li>Legend says he bought the domain while taking a mirror selfie</li>
+                <li>100% certified awesome friend material</li>
+            </ul>
+        </div>
+
+        <div class="thank-you">
+            <span style="font-size: 1.5em;">🙏</span><br>
+            THANK YOU JIT!<br>
+            <span style="font-size: 0.6em;">You're the real MVP!</span>
+        </div>
+
+        <div class="footer">
+            <p>*No domains were harmed in the making of this tribute page</p>
+            <p style="margin-top: 10px;">Forever grateful to the guy who said "I got you bro" and actually meant it 💪</p>
+        </div>
+    </div>
+
+    <script>
+        // Add random confetti
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.backgroundColor = ['#f5576c', '#f093fb', '#667eea', '#764ba2', 'gold'][Math.floor(Math.random() * 5)];
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 3000);
+        }
+
+        // Create confetti every 500ms
+        setInterval(createConfetti, 500);
+
+        // Add click effect on photo
+        document.querySelector('.photo-frame').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'wiggle 2s ease-in-out infinite';
+            }, 100);
+
+            // Burst of emojis
+            const emojis = ['❤️', '🎉', '🌟', '💪', '🔥', '👏'];
+            for(let i = 0; i < 10; i++) {
+                const emoji = document.createElement('div');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.position = 'fixed';
+                emoji.style.left = '50%';
+                emoji.style.top = '50%';
+                emoji.style.fontSize = '30px';
+                emoji.style.pointerEvents = 'none';
+                emoji.style.animation = `fly-away 1s ease-out forwards`;
+                emoji.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(emoji);
+
+                setTimeout(() => emoji.remove(), 1000);
+            }
+        });
+
+        // Add CSS for fly-away animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fly-away {
+                0% {
+                    transform: translate(-50%, -50%) scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * -200 - 100}px) scale(1.5);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
