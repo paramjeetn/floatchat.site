@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Legend Behind Our Domain</title>
+    <link rel="preload" as="image" href="Jit.png">
     <style>
         * {
             margin: 0;
@@ -104,6 +105,8 @@
             height: auto;
             display: block;
             transition: transform 0.3s ease;
+            image-rendering: optimizeQuality;
+            will-change: transform;
         }
 
         .photo-frame:hover img {
@@ -233,7 +236,7 @@
         <div class="hero-section">
             <div class="crown">👑</div>
             <div class="photo-frame">
-                <img src="Jit.png" alt="The Legend Himself - Jit">
+                <img src="Jit.png" alt="The Legend Himself - Jit" loading="eager" decoding="async">
             </div>
         </div>
 
