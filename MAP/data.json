@@ -1,0 +1,521 @@
+[{
+  "float_serial_no": "136250",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-29 03:56:45.000000 UTC",
+  "cycle_number": "28",
+  "latitude": "17.000853",
+  "longitude": "85.597595",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "136250",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-18 06:28:07.000000 UTC",
+  "cycle_number": "27",
+  "latitude": "16.899376",
+  "longitude": "85.961197",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "136250",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-08 06:32:24.000000 UTC",
+  "cycle_number": "26",
+  "latitude": "16.977644",
+  "longitude": "86.121658",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "260023CA02",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-29 03:56:36.000000 UTC",
+  "cycle_number": "30",
+  "latitude": "-43.009456634521491",
+  "longitude": "37.581680297851562",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA02",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-19 03:27:36.000000 UTC",
+  "cycle_number": "29",
+  "latitude": "-42.988628387451172",
+  "longitude": "37.140838623046882",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA02",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-09 04:28:15.000000 UTC",
+  "cycle_number": "28",
+  "latitude": "-43.060317993164062",
+  "longitude": "36.728984832763672",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA03",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-26 04:20:04.000000 UTC",
+  "cycle_number": "23",
+  "latitude": "-37.561676025390632",
+  "longitude": "30.212018966674805",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA03",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-16 04:22:14.000000 UTC",
+  "cycle_number": "22",
+  "latitude": "-39.822395324707031",
+  "longitude": "32.641994476318359",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA03",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-07 13:16:19.000000 UTC",
+  "cycle_number": "21",
+  "latitude": "-40.9248046875",
+  "longitude": "32.480976104736328",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA04",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-29 03:56:36.000000 UTC",
+  "cycle_number": "23",
+  "latitude": "-36.519462585449219",
+  "longitude": "30.814725875854489",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA04",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-19 03:27:36.000000 UTC",
+  "cycle_number": "22",
+  "latitude": "-36.049755096435547",
+  "longitude": "29.610389709472656",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "260023CA04",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-10 04:29:24.000000 UTC",
+  "cycle_number": "21",
+  "latitude": "-36.101661682128906",
+  "longitude": "29.083444595336918",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "263223CA01",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-29 03:56:36.000000 UTC",
+  "cycle_number": "23",
+  "latitude": "-37.77618408203125",
+  "longitude": "34.329521179199219",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "263223CA01",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-19 03:27:36.000000 UTC",
+  "cycle_number": "22",
+  "latitude": "-37.204738616943359",
+  "longitude": "34.390861511230469",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "263223CA01",
+  "platform_type": "ARVOR",
+  "project_name": "ArgoCanada",
+  "pi_name": "BlairGreenan",
+  "date_creation": "2025-01-10 04:29:24.000000 UTC",
+  "cycle_number": "21",
+  "latitude": "-36.797470092773438",
+  "longitude": "34.960132598876953",
+  "vertical_sampling_scheme": "Primarysampling:averaged"
+}, {
+  "float_serial_no": "451500",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-22 11:28:15.000000 UTC",
+  "cycle_number": "29",
+  "latitude": "0.378013",
+  "longitude": "81.788055",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "451500",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-03 07:30:27.000000 UTC",
+  "cycle_number": "27",
+  "latitude": "0.920753",
+  "longitude": "78.032242",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "557260",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-25 11:21:02.000000 UTC",
+  "cycle_number": "18",
+  "latitude": "7.114996",
+  "longitude": "64.579559",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "557260",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-15 02:42:18.000000 UTC",
+  "cycle_number": "17",
+  "latitude": "7.322915",
+  "longitude": "64.669304",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "557260",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-05 04:27:41.000000 UTC",
+  "cycle_number": "16",
+  "latitude": "7.293422",
+  "longitude": "64.813896",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "558220",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-22 11:28:15.000000 UTC",
+  "cycle_number": "27",
+  "latitude": "19.270599",
+  "longitude": "65.099136",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "558220",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-12 02:28:56.000000 UTC",
+  "cycle_number": "26",
+  "latitude": "19.114107",
+  "longitude": "65.148415",
+  "vertical_sampling_scheme": "Primarysampling:discrete[]"
+}, {
+  "float_serial_no": "558220",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-02 04:58:18.000000 UTC",
+  "cycle_number": "25",
+  "latitude": "19.183132",
+  "longitude": "65.245377",
+  "vertical_sampling_scheme": "Primarysampling:discrete[]"
+}, {
+  "float_serial_no": "8669",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-22 11:28:15.000000 UTC",
+  "cycle_number": "210",
+  "latitude": "17.807695",
+  "longitude": "60.752651",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8669",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-12 02:28:56.000000 UTC",
+  "cycle_number": "209",
+  "latitude": "17.887297",
+  "longitude": "60.97139",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8669",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-02 04:58:18.000000 UTC",
+  "cycle_number": "208",
+  "latitude": "18.028463",
+  "longitude": "61.149529",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8670",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-23 14:43:03.000000 UTC",
+  "cycle_number": "210",
+  "latitude": "17.861401",
+  "longitude": "67.614769",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8670",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-13 02:29:16.000000 UTC",
+  "cycle_number": "209",
+  "latitude": "17.888968",
+  "longitude": "67.373352",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8673",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-18 06:28:07.000000 UTC",
+  "cycle_number": "180",
+  "latitude": "-52.744022",
+  "longitude": "103.515923",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8673",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-08 06:32:24.000000 UTC",
+  "cycle_number": "179",
+  "latitude": "-52.289406",
+  "longitude": "101.772858",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8676",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-25 11:21:02.000000 UTC",
+  "cycle_number": "182",
+  "latitude": "-63.618309",
+  "longitude": "91.732018",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8676",
+  "platform_type": "APEX",
+  "project_name": "ArgoINDIA",
+  "pi_name": "MRavichandran",
+  "date_creation": "2025-01-15 02:42:18.000000 UTC",
+  "cycle_number": "181",
+  "latitude": "-62.93734",
+  "longitude": "92.282539",
+  "vertical_sampling_scheme": "Primarysampling:averaged[]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH",
+  "date_creation": "2025-01-29 03:56:45.000000 UTC",
+  "cycle_number": "168",
+  "latitude": "-25.88311",
+  "longitude": "111.17953",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-27 04:41:18.000000 UTC",
+  "cycle_number": "162",
+  "latitude": "-27.326",
+  "longitude": "68.929",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH",
+  "date_creation": "2025-01-19 03:27:36.000000 UTC",
+  "cycle_number": "167",
+  "latitude": "-25.76455",
+  "longitude": "111.41032",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-17 15:09:17.000000 UTC",
+  "cycle_number": "161",
+  "latitude": "-27.063",
+  "longitude": "68.847",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH",
+  "date_creation": "2025-01-09 04:28:15.000000 UTC",
+  "cycle_number": "166",
+  "latitude": "-26.20335",
+  "longitude": "111.25697",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8861",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-07 13:16:19.000000 UTC",
+  "cycle_number": "160",
+  "latitude": "-26.963",
+  "longitude": "68.702",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-31 13:09:13.000000 UTC",
+  "cycle_number": "162",
+  "latitude": "-31.615",
+  "longitude": "101.156",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-29 03:56:36.000000 UTC",
+  "cycle_number": "168",
+  "latitude": "-13.26004",
+  "longitude": "90.07521",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-21 15:41:08.000000 UTC",
+  "cycle_number": "161",
+  "latitude": "-31.761",
+  "longitude": "101.284",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-20 04:30:11.000000 UTC",
+  "cycle_number": "167",
+  "latitude": "-13.27489",
+  "longitude": "89.87933",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-11 04:30:31.000000 UTC",
+  "cycle_number": "160",
+  "latitude": "-32.004",
+  "longitude": "101.854",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-10 04:29:24.000000 UTC",
+  "cycle_number": "166",
+  "latitude": "-13.12565",
+  "longitude": "89.75367",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8865",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-01 05:27:56.000000 UTC",
+  "cycle_number": "159",
+  "latitude": "-32.869",
+  "longitude": "102.265",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-31 13:09:13.000000 UTC",
+  "cycle_number": "168",
+  "latitude": "-13.06657",
+  "longitude": "94.72608",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-23 14:43:03.000000 UTC",
+  "cycle_number": "161",
+  "latitude": "-35.944",
+  "longitude": "58.841",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-21 15:41:08.000000 UTC",
+  "cycle_number": "167",
+  "latitude": "-13.21596",
+  "longitude": "94.87164",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-13 02:29:16.000000 UTC",
+  "cycle_number": "160",
+  "latitude": "-35.489",
+  "longitude": "59.027",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-11 04:30:31.000000 UTC",
+  "cycle_number": "166",
+  "latitude": "-13.12002",
+  "longitude": "94.82045",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "APEX",
+  "project_name": "UW,Argo",
+  "pi_name": "STEPHENRISER",
+  "date_creation": "2025-01-03 07:30:27.000000 UTC",
+  "cycle_number": "159",
+  "latitude": "-34.918",
+  "longitude": "59.384",
+  "vertical_sampling_scheme": "Primarysampling:mixed[deeperthannominal985dbar:discrete;nominal985dbartosurface:2dbar-binaveraged]"
+}, {
+  "float_serial_no": "8866",
+  "platform_type": "SOLO_II",
+  "project_name": "USARGOPROJECT",
+  "pi_name": "DeanROEMMICH,SarahPURKEY,NathalieZILBERMAN,JohnGILSON",
+  "date_creation": "2025-01-01 05:27:56.000000 UTC",
+  "cycle_number": "165",
+  "latitude": "-13.10319",
+  "longitude": "94.64449",
+  "vertical_sampling_scheme": "Primarysampling:averaged[nominal2dbarbinneddatasampledat1.0HzfromaSBE41CP;bindetailfrom0dbar(numberbins/binwidth):10/1;500/2;remaining/2]"
+}]
