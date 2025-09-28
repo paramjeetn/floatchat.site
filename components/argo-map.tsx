@@ -28,8 +28,8 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
   useEffect(() => {
     const loadFloatData = async () => {
       try {
-        console.log('Fetching float data from /transformed_Data.json...')
-        const response = await fetch('/transformed_Data.json')
+        console.log('Fetching float data from /transformed_data.json...')
+        const response = await fetch('/transformed_data.json')
 
         if (!response.ok) {
           throw new Error(`Failed to load float data: ${response.status} ${response.statusText}`)
