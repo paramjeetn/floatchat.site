@@ -114,7 +114,7 @@ export function ProfileDataBrowser() {
         if (filters.lon_min) params.append("min_lon", filters.lon_min)
         if (filters.lon_max) params.append("max_lon", filters.lon_max)
 
-        console.log("Fetching profiles with params:", params.toString())
+        // console.log("Fetching profiles with params:", params.toString())
 
         const response = await fetch(`/api/profiles?${params}`)
         if (!response.ok) {
@@ -122,7 +122,7 @@ export function ProfileDataBrowser() {
         }
 
         const result = await response.json()
-        console.log("API response:", result)
+        // console.log("API response:", result)
 
         // Normalize the data to handle date_creation format
         const normalizedProfiles = result.profiles.map((profile: any) => ({
@@ -135,7 +135,7 @@ export function ProfileDataBrowser() {
         setTotalRows(179728)
         setTotalMeasurements(117827792)
       } catch (error) {
-        console.error("Failed to fetch profiles:", error)
+        // console.error("Failed to fetch profiles:", error)
         setData([])
         setTotalRows(179728)
       } finally {

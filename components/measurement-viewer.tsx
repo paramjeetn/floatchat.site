@@ -93,7 +93,7 @@ export function MeasurementViewer({ profile, isOpen, onClose }: MeasurementViewe
     const fetchMeasurements = async () => {
       setLoading(true)
       try {
-        console.log(`Fetching measurements for profile ${profile.profile_id}...`)
+        // console.log(`Fetching measurements for profile ${profile.profile_id}...`)
 
         const response = await fetch(`/api/profiles/${profile.profile_id}/measurements`)
         if (!response.ok) {
@@ -101,11 +101,11 @@ export function MeasurementViewer({ profile, isOpen, onClose }: MeasurementViewe
         }
 
         const result = await response.json()
-        console.log(`Received ${result.measurements.length} measurements from API`)
+        // console.log(`Received ${result.measurements.length} measurements from API`)
 
         setMeasurements(result.measurements)
       } catch (error) {
-        console.error('Failed to fetch measurements:', error)
+        // console.error('Failed to fetch measurements:', error)
         setMeasurements([])
       } finally {
         setLoading(false)

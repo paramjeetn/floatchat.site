@@ -14,7 +14,7 @@ export async function GET(
     const limit = Math.min(parseInt(searchParams.get("limit") || "100"), 500) // Max 500 per page
     const offset = (page - 1) * limit
 
-    console.log(`Fetching measurements for profile ${profileId}, page ${page}, limit ${limit}`)
+    // console.log(`Fetching measurements for profile ${profileId}, page ${page}, limit ${limit}`)
 
     // Build filter conditions
     const conditions: string[] = ["profile_id = ?"]
@@ -83,7 +83,7 @@ export async function GET(
       LIMIT 1
     `
 
-    console.log('Executing measurements query:', measurementsQuery.substring(0, 200) + '...')
+    // console.log('Executing measurements query:', measurementsQuery.substring(0, 200) + '...')
 
     // Execute all queries in parallel
     const [measurementsResult, countResult, profileResult] = await Promise.all([
@@ -96,7 +96,7 @@ export async function GET(
     const totalPages = Math.ceil(totalCount / limit)
     const profile = profileResult[0] || null
 
-    console.log(`Found ${measurementsResult.length} measurements, total: ${totalCount}`)
+    // console.log(`Found ${measurementsResult.length} measurements, total: ${totalCount}`)
 
     if (!profile) {
       return NextResponse.json(

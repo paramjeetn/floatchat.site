@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const limit = Math.min(parseInt(searchParams.get("limit") || "20"), 100) // Max 100 per page
     const offset = (page - 1) * limit
 
-    console.log(`Fetching profiles page ${page}, limit ${limit}, offset ${offset}`)
+    // console.log(`Fetching profiles page ${page}, limit ${limit}, offset ${offset}`)
 
     // Build filter conditions
     const conditions: string[] = []
@@ -107,9 +107,9 @@ export async function GET(request: NextRequest) {
       ${whereClause}
     `
 
-    console.log('Executing profiles query:', profilesQuery.substring(0, 200) + '...')
-    console.log('Executing profiles count query:', profilesCountQuery)
-    console.log('Executing measurements count query:', measurementsCountQuery)
+    // console.log('Executing profiles query:', profilesQuery.substring(0, 200) + '...')
+    // console.log('Executing profiles count query:', profilesCountQuery)
+    // console.log('Executing measurements count query:', measurementsCountQuery)
 
     // Execute all three queries in parallel
     const [profilesResult, profilesCountResult, measurementsCountResult] = await Promise.all([
@@ -122,7 +122,7 @@ export async function GET(request: NextRequest) {
     const totalMeasurements = measurementsCountResult[0]?.total_count || 0
     const totalPages = Math.ceil(totalCount / limit)
 
-    console.log(`Found ${profilesResult.length} profiles, total: ${totalCount}, total measurements: ${totalMeasurements}`)
+    // console.log(`Found ${profilesResult.length} profiles, total: ${totalCount}, total measurements: ${totalMeasurements}`)
 
     return NextResponse.json({
       profiles: profilesResult,

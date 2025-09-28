@@ -28,7 +28,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
   useEffect(() => {
     const loadFloatData = async () => {
       try {
-        console.log('Fetching float data from /transformed_data.json...')
+        // console.log('Fetching float data from /transformed_data.json...')
         const response = await fetch('/transformed_data.json')
 
         if (!response.ok) {
@@ -36,7 +36,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
         }
 
         const data: FloatData[] = await response.json()
-        console.log('Successfully loaded float data:', data.length, 'floats')
+        // console.log('Successfully loaded float data:', data.length, 'floats')
 
         if (!data || data.length === 0) {
           throw new Error('No float data found in the JSON file')
@@ -185,7 +185,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
 
           if (isNaN(lat) || isNaN(lng)) return
 
-          console.log('Adding marker at:', lat, lng, 'for float:', floatData.float_serial_no)
+          // console.log('Adding marker at:', lat, lng, 'for float:', floatData.float_serial_no)
 
           const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map)
           const popupContent = createPopupContent(floatData)
@@ -231,7 +231,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
           }
         })
 
-        console.log(`Added ${bounds.length} markers to the map`)
+        // console.log(`Added ${bounds.length} markers to the map`)
 
       } catch (error) {
         console.error('Error initializing map:', error)
