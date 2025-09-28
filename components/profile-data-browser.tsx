@@ -7,14 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   ChevronLeft,
   ChevronRight,
@@ -27,7 +20,7 @@ import {
   Search,
   Filter,
   Eye,
-  Database
+  Database,
 } from "lucide-react"
 import { MeasurementViewer } from "@/components/measurement-viewer"
 import { exportFilteredData, getExportSizeEstimate } from "@/lib/data-export"
@@ -51,7 +44,7 @@ interface ProfileData {
 
 interface SortConfig {
   key: keyof ProfileData
-  direction: 'asc' | 'desc'
+  direction: "asc" | "desc"
 }
 
 interface FilterConfig {
@@ -73,7 +66,7 @@ export function ProfileDataBrowser() {
   const [data, setData] = useState<ProfileData[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedProfiles, setSelectedProfiles] = useState<Set<number>>(new Set())
-  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'date_creation', direction: 'desc' })
+  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: "date_creation", direction: "desc" })
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(50)
   const [totalRows, setTotalRows] = useState(0)
@@ -81,7 +74,7 @@ export function ProfileDataBrowser() {
   const [showFilters, setShowFilters] = useState(true)
   const [selectedProfile, setSelectedProfile] = useState<ProfileData | null>(null)
   const [showMeasurements, setShowMeasurements] = useState(false)
-  const [exportFormat, setExportFormat] = useState<'csv' | 'json'>('csv')
+  const [exportFormat, setExportFormat] = useState<"csv" | "json">("csv")
 
   const [filters, setFilters] = useState<FilterConfig>({
     platform_number: "",
@@ -95,7 +88,7 @@ export function ProfileDataBrowser() {
     lat_max: "",
     lon_min: "",
     lon_max: "",
-    quality_filter: "all"
+    quality_filter: "all",
   })
 
   // Real API data fetching
@@ -106,21 +99,21 @@ export function ProfileDataBrowser() {
         // Build query parameters
         const params = new URLSearchParams({
           page: currentPage.toString(),
-          limit: pageSize.toString()
+          limit: pageSize.toString(),
         })
 
         // Add filters if they have values (excluding "all" which means no filter)
-        if (filters.platform_number) params.append('platform_number', filters.platform_number)
-        if (filters.data_center && filters.data_center !== 'all') params.append('data_center', filters.data_center)
-        if (filters.data_mode && filters.data_mode !== 'all') params.append('data_mode', filters.data_mode)
-        if (filters.date_from) params.append('start_date', filters.date_from)
-        if (filters.date_to) params.append('end_date', filters.date_to)
-        if (filters.lat_min) params.append('min_lat', filters.lat_min)
-        if (filters.lat_max) params.append('max_lat', filters.lat_max)
-        if (filters.lon_min) params.append('min_lon', filters.lon_min)
-        if (filters.lon_max) params.append('max_lon', filters.lon_max)
+        if (filters.platform_number) params.append("platform_number", filters.platform_number)
+        if (filters.data_center && filters.data_center !== "all") params.append("data_center", filters.data_center)
+        if (filters.data_mode && filters.data_mode !== "all") params.append("data_mode", filters.data_mode)
+        if (filters.date_from) params.append("start_date", filters.date_from)
+        if (filters.date_to) params.append("end_date", filters.date_to)
+        if (filters.lat_min) params.append("min_lat", filters.lat_min)
+        if (filters.lat_max) params.append("max_lat", filters.lat_max)
+        if (filters.lon_min) params.append("min_lon", filters.lon_min)
+        if (filters.lon_max) params.append("max_lon", filters.lon_max)
 
-        console.log('Fetching profiles with params:', params.toString())
+        console.log("Fetching profiles with params:", params.toString())
 
         const response = await fetch(`/api/profiles?${params}`)
         if (!response.ok) {
@@ -128,19 +121,19 @@ export function ProfileDataBrowser() {
         }
 
         const result = await response.json()
-        console.log('API response:', result)
+        console.log("API response:", result)
 
         // Normalize the data to handle date_creation format
         const normalizedProfiles = result.profiles.map((profile: any) => ({
           ...profile,
-          date_creation: typeof profile.date_creation === 'object' ?
-            profile.date_creation.value : profile.date_creation
+          date_creation:
+            typeof profile.date_creation === "object" ? profile.date_creation.value : profile.date_creation,
         }))
 
         setData(normalizedProfiles)
         setTotalRows(result.pagination.total)
       } catch (error) {
-        console.error('Failed to fetch profiles:', error)
+        console.error("Failed to fetch profiles:", error)
         setData([])
         setTotalRows(0)
       } finally {
@@ -152,9 +145,9 @@ export function ProfileDataBrowser() {
   }, [currentPage, pageSize, filters])
 
   const handleSort = (key: keyof ProfileData) => {
-    setSortConfig(current => ({
+    setSortConfig((current) => ({
       key,
-      direction: current.key === key && current.direction === 'desc' ? 'asc' : 'desc'
+      direction: current.key === key && current.direction === "desc" ? "asc" : "desc",
     }))
   }
 
@@ -172,34 +165,45 @@ export function ProfileDataBrowser() {
     if (selectedProfiles.size === data.length) {
       setSelectedProfiles(new Set())
     } else {
-      setSelectedProfiles(new Set(data.map(row => row.profile_id)))
+      setSelectedProfiles(new Set(data.map((row) => row.profile_id)))
     }
   }
 
   const getDataModeInfo = (mode: string) => {
     switch (mode) {
-      case 'R': return { label: 'Real-time', color: 'bg-yellow-100 text-yellow-800' }
-      case 'A': return { label: 'Adjusted', color: 'bg-green-100 text-green-800' }
-      case 'D': return { label: 'Delayed', color: 'bg-blue-100 text-blue-800' }
-      default: return { label: 'Unknown', color: 'bg-gray-100 text-gray-800' }
+      case "R":
+        return { label: "Real-time", color: "bg-yellow-100 text-yellow-800" }
+      case "A":
+        return { label: "Adjusted", color: "bg-green-100 text-green-800" }
+      case "D":
+        return { label: "Delayed", color: "bg-blue-100 text-blue-800" }
+      default:
+        return { label: "Unknown", color: "bg-gray-100 text-gray-800" }
     }
   }
 
   const getQualityColor = (qc: string) => {
     switch (qc) {
-      case '1': return 'bg-green-100 text-green-800'
-      case '2': return 'bg-yellow-100 text-yellow-800'
-      case '3': return 'bg-orange-100 text-orange-800'
-      case '4': return 'bg-red-100 text-red-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case "1":
+        return "bg-green-100 text-green-800"
+      case "2":
+        return "bg-yellow-100 text-yellow-800"
+      case "3":
+        return "bg-orange-100 text-orange-800"
+      case "4":
+        return "bg-red-100 text-red-800"
+      default:
+        return "bg-gray-100 text-gray-800"
     }
   }
 
   const getSortIcon = (column: keyof ProfileData) => {
     if (sortConfig.key !== column) return <ArrowUpDown className="ml-1 h-3 w-3" />
-    return sortConfig.direction === 'asc' ?
-      <ArrowUp className="ml-1 h-3 w-3" /> :
+    return sortConfig.direction === "asc" ? (
+      <ArrowUp className="ml-1 h-3 w-3" />
+    ) : (
       <ArrowDown className="ml-1 h-3 w-3" />
+    )
   }
 
   const totalPages = Math.ceil(totalRows / pageSize)
@@ -207,14 +211,14 @@ export function ProfileDataBrowser() {
   const handleExport = () => {
     if (selectedProfiles.size === 0) return
 
-    const selectedData = data.filter(profile => selectedProfiles.has(profile.profile_id))
+    const selectedData = data.filter((profile) => selectedProfiles.has(profile.profile_id))
     const activeFilters = {
       ...filters,
       searchTerm,
       currentPage,
       pageSize,
       sortField: sortConfig.key,
-      sortDirection: sortConfig.direction
+      sortDirection: sortConfig.direction,
     }
 
     exportFilteredData(selectedData, activeFilters, exportFormat)
@@ -230,22 +234,19 @@ export function ProfileDataBrowser() {
             ARGO Profile Data Browser
           </h1>
           <p className="text-muted-foreground">
-            {totalRows.toLocaleString()} profiles across Indian Ocean • Page {currentPage} of {totalPages.toLocaleString()}
+            {totalRows.toLocaleString()} profiles across Indian Ocean • Page {currentPage} of{" "}
+            {totalPages.toLocaleString()}
           </p>
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShowFilters(!showFilters)}
-          >
+          <Button variant="outline" size="sm" onClick={() => setShowFilters(!showFilters)}>
             <Filter className="h-4 w-4 mr-2" />
-            {showFilters ? 'Hide' : 'Show'} Filters
+            {showFilters ? "Hide" : "Show"} Filters
           </Button>
 
           <div className="flex items-center space-x-1">
-            <Select value={exportFormat} onValueChange={(value: 'csv' | 'json') => setExportFormat(value)}>
+            <Select value={exportFormat} onValueChange={(value: "csv" | "json") => setExportFormat(value)}>
               <SelectTrigger className="w-16">
                 <SelectValue />
               </SelectTrigger>
@@ -259,7 +260,11 @@ export function ProfileDataBrowser() {
               size="sm"
               disabled={selectedProfiles.size === 0}
               onClick={handleExport}
-              title={selectedProfiles.size > 0 ? `Export ${selectedProfiles.size} profiles (~${getExportSizeEstimate(selectedProfiles.size, exportFormat)})` : 'Select profiles to export'}
+              title={
+                selectedProfiles.size > 0
+                  ? `Export ${selectedProfiles.size} profiles (~${getExportSizeEstimate(selectedProfiles.size, exportFormat)})`
+                  : "Select profiles to export"
+              }
             >
               <Download className="h-4 w-4 mr-2" />
               Export ({selectedProfiles.size})
@@ -291,13 +296,16 @@ export function ProfileDataBrowser() {
                 <Input
                   placeholder="e.g. 5904567"
                   value={filters.platform_number}
-                  onChange={(e) => setFilters({...filters, platform_number: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, platform_number: e.target.value })}
                 />
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground">Data Centre</label>
-                <Select value={filters.data_center} onValueChange={(value) => setFilters({...filters, data_center: value})}>
+                <Select
+                  value={filters.data_center}
+                  onValueChange={(value) => setFilters({ ...filters, data_center: value })}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
@@ -316,7 +324,10 @@ export function ProfileDataBrowser() {
 
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground">Data Mode</label>
-                <Select value={filters.data_mode} onValueChange={(value) => setFilters({...filters, data_mode: value})}>
+                <Select
+                  value={filters.data_mode}
+                  onValueChange={(value) => setFilters({ ...filters, data_mode: value })}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
@@ -331,7 +342,10 @@ export function ProfileDataBrowser() {
 
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground">Platform Type</label>
-                <Select value={filters.platform_type} onValueChange={(value) => setFilters({...filters, platform_type: value})}>
+                <Select
+                  value={filters.platform_type}
+                  onValueChange={(value) => setFilters({ ...filters, platform_type: value })}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
@@ -351,7 +365,7 @@ export function ProfileDataBrowser() {
                 <Input
                   type="date"
                   value={filters.date_from}
-                  onChange={(e) => setFilters({...filters, date_from: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, date_from: e.target.value })}
                 />
               </div>
 
@@ -360,7 +374,7 @@ export function ProfileDataBrowser() {
                 <Input
                   type="date"
                   value={filters.date_to}
-                  onChange={(e) => setFilters({...filters, date_to: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, date_to: e.target.value })}
                 />
               </div>
 
@@ -371,7 +385,7 @@ export function ProfileDataBrowser() {
                   placeholder="-90"
                   step="0.001"
                   value={filters.lat_min}
-                  onChange={(e) => setFilters({...filters, lat_min: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, lat_min: e.target.value })}
                 />
               </div>
 
@@ -382,7 +396,7 @@ export function ProfileDataBrowser() {
                   placeholder="90"
                   step="0.001"
                   value={filters.lat_max}
-                  onChange={(e) => setFilters({...filters, lat_max: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, lat_max: e.target.value })}
                 />
               </div>
 
@@ -393,7 +407,7 @@ export function ProfileDataBrowser() {
                   placeholder="-180"
                   step="0.001"
                   value={filters.lon_min}
-                  onChange={(e) => setFilters({...filters, lon_min: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, lon_min: e.target.value })}
                 />
               </div>
 
@@ -404,13 +418,16 @@ export function ProfileDataBrowser() {
                   placeholder="180"
                   step="0.001"
                   value={filters.lon_max}
-                  onChange={(e) => setFilters({...filters, lon_max: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, lon_max: e.target.value })}
                 />
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground">Project</label>
-                <Select value={filters.project_name} onValueChange={(value) => setFilters({...filters, project_name: value})}>
+                <Select
+                  value={filters.project_name}
+                  onValueChange={(value) => setFilters({ ...filters, project_name: value })}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
@@ -427,7 +444,10 @@ export function ProfileDataBrowser() {
 
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground">Quality Filter</label>
-                <Select value={filters.quality_filter} onValueChange={(value) => setFilters({...filters, quality_filter: value})}>
+                <Select
+                  value={filters.quality_filter}
+                  onValueChange={(value) => setFilters({ ...filters, quality_filter: value })}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
@@ -446,26 +466,26 @@ export function ProfileDataBrowser() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setFilters({
-                  platform_number: "",
-                  data_center: "all",
-                  data_mode: "all",
-                  platform_type: "all",
-                  project_name: "all",
-                  date_from: "",
-                  date_to: "",
-                  lat_min: "",
-                  lat_max: "",
-                  lon_min: "",
-                  lon_max: "",
-                  quality_filter: "all"
-                })}
+                onClick={() =>
+                  setFilters({
+                    platform_number: "",
+                    data_center: "all",
+                    data_mode: "all",
+                    platform_type: "all",
+                    project_name: "all",
+                    date_from: "",
+                    date_to: "",
+                    lat_min: "",
+                    lat_max: "",
+                    lon_min: "",
+                    lon_max: "",
+                    quality_filter: "all",
+                  })
+                }
               >
                 Clear All
               </Button>
-              <Button size="sm">
-                Apply Filters
-              </Button>
+              <Button size="sm">Apply Filters</Button>
             </div>
           </CardContent>
         </Card>
@@ -485,27 +505,27 @@ export function ProfileDataBrowser() {
                     />
                   </TableHead>
                   <TableHead>
-                    <Button variant="ghost" size="sm" onClick={() => handleSort('platform_number')}>
+                    <Button variant="ghost" size="sm" onClick={() => handleSort("platform_number")}>
                       Platform
-                      {getSortIcon('platform_number')}
+                      {getSortIcon("platform_number")}
                     </Button>
                   </TableHead>
                   <TableHead>
-                    <Button variant="ghost" size="sm" onClick={() => handleSort('cycle_number')}>
+                    <Button variant="ghost" size="sm" onClick={() => handleSort("cycle_number")}>
                       Cycle
-                      {getSortIcon('cycle_number')}
+                      {getSortIcon("cycle_number")}
                     </Button>
                   </TableHead>
                   <TableHead>
-                    <Button variant="ghost" size="sm" onClick={() => handleSort('date_creation')}>
+                    <Button variant="ghost" size="sm" onClick={() => handleSort("date_creation")}>
                       Date Created
-                      {getSortIcon('date_creation')}
+                      {getSortIcon("date_creation")}
                     </Button>
                   </TableHead>
                   <TableHead>
-                    <Button variant="ghost" size="sm" onClick={() => handleSort('latitude')}>
+                    <Button variant="ghost" size="sm" onClick={() => handleSort("latitude")}>
                       Position
-                      {getSortIcon('latitude')}
+                      {getSortIcon("latitude")}
                     </Button>
                   </TableHead>
                   <TableHead>Data Centre</TableHead>
@@ -517,84 +537,78 @@ export function ProfileDataBrowser() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {loading ? (
-                  Array.from({ length: pageSize }).map((_, i) => (
-                    <TableRow key={i}>
-                      {Array.from({ length: 11 }).map((_, j) => (
-                        <TableCell key={j}>
-                          <div className="h-4 bg-muted animate-pulse rounded" />
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
-                ) : (
-                  data.map((profile) => {
-                    const dataModeInfo = getDataModeInfo(profile.data_mode)
-                    return (
-                      <TableRow
-                        key={profile.profile_id}
-                        className={selectedProfiles.has(profile.profile_id) ? "bg-muted/50" : ""}
-                      >
-                        <TableCell>
-                          <Checkbox
-                            checked={selectedProfiles.has(profile.profile_id)}
-                            onCheckedChange={() => handleSelectProfile(profile.profile_id)}
-                          />
-                        </TableCell>
-                        <TableCell className="font-mono font-medium">
-                          {profile.platform_number}
-                        </TableCell>
-                        <TableCell>{profile.cycle_number}</TableCell>
-                        <TableCell className="text-sm">{profile.date_creation}</TableCell>
-                        <TableCell className="text-xs">
-                          {profile.latitude.toFixed(3)}°, {profile.longitude.toFixed(3)}°
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline">{profile.data_center}</Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge className={dataModeInfo.color}>
-                            {dataModeInfo.label}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="secondary" className="text-xs">
-                            {profile.platform_type}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-xs max-w-32 truncate" title={profile.project_name}>
-                          {profile.project_name}
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex space-x-1">
-                            <Badge className={getQualityColor(profile.profile_temp_qc)} title="Temperature QC">
-                              T:{profile.profile_temp_qc}
-                            </Badge>
-                            <Badge className={getQualityColor(profile.profile_psal_qc)} title="Salinity QC">
-                              S:{profile.profile_psal_qc}
-                            </Badge>
-                            <Badge className={getQualityColor(profile.profile_pres_qc)} title="Pressure QC">
-                              P:{profile.profile_pres_qc}
-                            </Badge>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => {
-                              setSelectedProfile(profile)
-                              setShowMeasurements(true)
-                            }}
-                            title="View measurements"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </TableCell>
+                {loading
+                  ? Array.from({ length: pageSize }).map((_, i) => (
+                      <TableRow key={i}>
+                        {Array.from({ length: 11 }).map((_, j) => (
+                          <TableCell key={j}>
+                            <div className="h-4 bg-muted animate-pulse rounded" />
+                          </TableCell>
+                        ))}
                       </TableRow>
-                    )
-                  })
-                )}
+                    ))
+                  : data.map((profile) => {
+                      const dataModeInfo = getDataModeInfo(profile.data_mode)
+                      return (
+                        <TableRow
+                          key={profile.profile_id}
+                          className={selectedProfiles.has(profile.profile_id) ? "bg-muted/50" : ""}
+                        >
+                          <TableCell>
+                            <Checkbox
+                              checked={selectedProfiles.has(profile.profile_id)}
+                              onCheckedChange={() => handleSelectProfile(profile.profile_id)}
+                            />
+                          </TableCell>
+                          <TableCell className="font-mono font-medium">{profile.platform_number}</TableCell>
+                          <TableCell>{profile.cycle_number}</TableCell>
+                          <TableCell className="text-sm">{profile.date_creation}</TableCell>
+                          <TableCell className="text-xs">
+                            {profile.latitude.toFixed(3)}°, {profile.longitude.toFixed(3)}°
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline">{profile.data_center}</Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Badge className={dataModeInfo.color}>{dataModeInfo.label}</Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="secondary" className="text-xs">
+                              {profile.platform_type}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-xs max-w-32 truncate" title={profile.project_name}>
+                            {profile.project_name}
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex space-x-1">
+                              <Badge className={getQualityColor(profile.profile_temp_qc)} title="Temperature QC">
+                                T:{profile.profile_temp_qc}
+                              </Badge>
+                              <Badge className={getQualityColor(profile.profile_psal_qc)} title="Salinity QC">
+                                S:{profile.profile_psal_qc}
+                              </Badge>
+                              <Badge className={getQualityColor(profile.profile_pres_qc)} title="Pressure QC">
+                                P:{profile.profile_pres_qc}
+                              </Badge>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                setSelectedProfile(profile)
+                                setShowMeasurements(true)
+                              }}
+                              title="View measurements"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })}
               </TableBody>
             </Table>
           </div>
@@ -606,10 +620,13 @@ export function ProfileDataBrowser() {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <span className="text-sm text-muted-foreground">Rows per page:</span>
-            <Select value={pageSize.toString()} onValueChange={(value) => {
-              setPageSize(Number(value))
-              setCurrentPage(1)
-            }}>
+            <Select
+              value={pageSize.toString()}
+              onValueChange={(value) => {
+                setPageSize(Number(value))
+                setCurrentPage(1)
+              }}
+            >
               <SelectTrigger className="w-20">
                 <SelectValue />
               </SelectTrigger>
@@ -624,18 +641,13 @@ export function ProfileDataBrowser() {
 
           {selectedProfiles.size > 0 && (
             <Badge variant="secondary">
-              {selectedProfiles.size} profile{selectedProfiles.size !== 1 ? 's' : ''} selected
+              {selectedProfiles.size} profile{selectedProfiles.size !== 1 ? "s" : ""} selected
             </Badge>
           )}
         </div>
 
         <div className="flex items-center space-x-1">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage(1)}
-            disabled={currentPage === 1}
-          >
+          <Button variant="outline" size="sm" onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
             <ChevronsLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -673,11 +685,10 @@ export function ProfileDataBrowser() {
         <CardContent className="py-3">
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span>
-              Showing {((currentPage - 1) * pageSize + 1).toLocaleString()} to {Math.min(currentPage * pageSize, totalRows).toLocaleString()} of {totalRows.toLocaleString()} profiles
+              Showing {((currentPage - 1) * pageSize + 1).toLocaleString()} to{" "}
+              {Math.min(currentPage * pageSize, totalRows).toLocaleString()} of {totalRows.toLocaleString()} profiles
             </span>
-            <span>
-              {selectedProfiles.size} selected across all pages
-            </span>
+            <span>{selectedProfiles.size} selected across all pages</span>
           </div>
         </CardContent>
       </Card>

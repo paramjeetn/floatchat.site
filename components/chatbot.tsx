@@ -1,12 +1,11 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Send, Bot, User, TrendingUp, MapPin, Download, HelpCircle } from "lucide-react"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface Message {
   id: string
@@ -43,7 +42,8 @@ export function Chatbot() {
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(true)
-  const scrollAreaRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
 
   const quickActions: QuickAction[] = [
     {
@@ -57,12 +57,9 @@ export function Chatbot() {
     { label: "Help Guide", icon: HelpCircle, query: "What can you help me with regarding ARGO data?", color: "" },
   ]
 
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight
-    }
-  }, [messages])
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
+  }, [messages, isTyping])
 
   const handleSendMessage = async (messageContent?: string) => {
     const content = messageContent || inputValue.trim()
@@ -81,13 +78,11 @@ export function Chatbot() {
     setInputValue("")
     setIsTyping(true)
 
-    // Simulate realistic typing delay
-    const typingDelay = 800 + Math.random() * 1500 // 0.8-2.3 seconds
+    const typingDelay = 800 + Math.random() * 1500
 
     setTimeout(async () => {
       const { response, suggestions } = await generateBotResponse(content)
 
-      // Simulate gradual typing effect
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: response,
@@ -101,18 +96,12 @@ export function Chatbot() {
     }, typingDelay)
   }
 
-  const handleQuickAction = (action: QuickAction) => {
-    handleSendMessage(action.query)
-  }
-
-  const handleSuggestionClick = (suggestion: string) => {
-    handleSendMessage(suggestion)
-  }
+  const handleQuickAction = (action: QuickAction) => handleSendMessage(action.query)
+  const handleSuggestionClick = (s: string) => handleSendMessage(s)
 
   const generateBotResponse = async (userInput: string): Promise<{ response: string; suggestions?: string[] }> => {
     const input = userInput.toLowerCase()
 
-    // Temperature and thermal analysis
     if (
       input.includes("temperature") ||
       input.includes("temp") ||
@@ -131,7 +120,6 @@ export function Chatbot() {
       }
     }
 
-    // Salinity and water mass analysis
     if (input.includes("salinity") || input.includes("salt") || input.includes("psu") || input.includes("water mass")) {
       return {
         response:
@@ -145,7 +133,6 @@ export function Chatbot() {
       }
     }
 
-    // ARGO float information
     if (input.includes("float") || input.includes("sensor") || input.includes("buoy") || input.includes("instrument")) {
       return {
         response:
@@ -159,7 +146,6 @@ export function Chatbot() {
       }
     }
 
-    // Location and geographic queries
     if (
       input.includes("location") ||
       input.includes("where") ||
@@ -180,7 +166,6 @@ export function Chatbot() {
       }
     }
 
-    // Data profiles and structure
     if (
       input.includes("profile") ||
       input.includes("data structure") ||
@@ -200,7 +185,6 @@ export function Chatbot() {
       }
     }
 
-    // Trends and analysis
     if (
       input.includes("trend") ||
       input.includes("analysis") ||
@@ -220,7 +204,6 @@ export function Chatbot() {
       }
     }
 
-    // Export and download
     if (
       input.includes("export") ||
       input.includes("download") ||
@@ -234,7 +217,6 @@ export function Chatbot() {
       }
     }
 
-    // Help and guidance
     if (input.includes("help") || input.includes("how") || input.includes("guide") || input.includes("tutorial")) {
       return {
         response:
@@ -248,7 +230,6 @@ export function Chatbot() {
       }
     }
 
-    // Greetings
     if (input.includes("hello") || input.includes("hi") || input.includes("hey") || input.includes("good")) {
       return {
         response:
@@ -262,7 +243,6 @@ export function Chatbot() {
       }
     }
 
-    // Default intelligent responses
     const contextualResponses = [
       {
         response:
@@ -288,13 +268,10 @@ export function Chatbot() {
   }
 
   return (
-    <div className="w-full min-h-dvh flex flex-col bg-background overflow-hidden">
-      {/* Main Chat Container */}
-      <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-        {/* Messages Area */}
-        <ScrollArea className="flex-1 min-h-0" ref={scrollAreaRef}>
-          {/* Role=log for screen readers, polite live updates */}
-          <div className="w-full px-4 md:px-8 py-8 md:py-10" role="log" aria-live="polite">
+    <div className="fixed inset-x-0 bottom-0 top-[var(--nav-h,64px)] bg-background overflow-hidden z-10">
+      <div className="h-full grid grid-rows-[1fr,auto]">
+        <ScrollArea className="h-full min-h-0">
+          <div className="w-full px-4 md:px-8 py-8 md:py-10 pb-32 md:pb-36" role="log" aria-live="polite">
             <div className="space-y-10 md:space-y-16">
               {messages.map((message) => (
                 <div key={message.id} className="space-y-4 md:space-y-8">
@@ -326,7 +303,6 @@ export function Chatbot() {
                     )}
                   </div>
 
-                  {/* Suggested follow-up questions */}
                   {message.suggestedQuestions && (
                     <div className="flex flex-wrap gap-2.5 md:gap-3 pl-14 md:pl-20">
                       {message.suggestedQuestions.map((suggestion, i) => (
@@ -361,13 +337,12 @@ export function Chatbot() {
                   </div>
                 </div>
               )}
+              <div ref={bottomRef} aria-hidden="true" />
             </div>
           </div>
         </ScrollArea>
 
-        {/* Chat Input + Suggestions */}
-        <div className="flex-shrink-0 border-t border-border bg-card/95 backdrop-blur-lg px-4 md:px-8 py-5 md:py-6">
-          {/* Compact suggestions row */}
+        <div className="sticky bottom-0 left-0 z-20 border-t border-border bg-background/95 backdrop-blur px-4 md:px-8 py-5 md:py-6">
           {showSuggestions && (
             <div className="flex flex-wrap gap-2.5 md:gap-3 mb-3.5 md:mb-4">
               {quickActions.map((action, i) => (
@@ -378,7 +353,6 @@ export function Chatbot() {
                   className="rounded-full text-sm px-4 md:px-5 py-2 flex items-center gap-2 border border-border hover:bg-secondary"
                   onClick={() => handleQuickAction(action)}
                 >
-                  {/* Icon color uses accent token */}
                   <action.icon className="h-4 w-4 text-accent" />
                   {action.label}
                 </Button>
