@@ -35,8 +35,10 @@ export function Navigation({ activeTab = "home", onTabChange }: NavigationProps)
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">FloatChat</h1>
-            <span className="text-sm text-muted-foreground">ARGO Oceanographic Data Platform</span>
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold text-foreground leading-tight">FloatChat</h1>
+              <span className="text-xs text-muted-foreground -mt-1">Explore Ocean Data</span>
+            </div>
           </div>
 
           <div className="flex space-x-1">

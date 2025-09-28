@@ -5,14 +5,10 @@ import dynamic from 'next/dynamic'
 
 interface FloatData {
   float_serial_no: string
-  platform_type: string
-  project_name: string
-  pi_name: string
-  date_creation: string
-  cycle_number: string
   latitude: string
   longitude: string
-  vertical_sampling_scheme: string
+  date_creation: string
+  detail: string
 }
 
 interface ArgoMapProps {
@@ -30,7 +26,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
 
   // Load float data
   useEffect(() => {
-    fetch('/MAP/data.json')
+    fetch('/transformed_Data.json')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -125,20 +121,35 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
 
         // Popup content
         function createPopupContent(floatData: FloatData) {
+          // Extract platform type and cycle from detail string
+          const platformMatch = floatData.detail.match(/\(([^)]+)\)/)
+          const cycleMatch = floatData.detail.match(/cycle (\d+)/)
+          const projectMatch = floatData.detail.match(/under ([^\s]+)/)
+          const piMatch = floatData.detail.match(/by ([^\s]+)/)
+
+          const platformType = platformMatch ? platformMatch[1] : 'Unknown'
+          const cycleNumber = cycleMatch ? cycleMatch[1] : 'N/A'
+          const projectName = projectMatch ? projectMatch[1] : 'Unknown'
+          const piName = piMatch ? piMatch[1] : 'Unknown'
+
           return `
             <div class="popup-content">
               <div class="popup-header">Float #${floatData.float_serial_no}</div>
               <div class="popup-row">
                 <span class="popup-label">Platform:</span>
-                <span class="popup-value">${floatData.platform_type}</span>
+                <span class="popup-value">${platformType}</span>
               </div>
               <div class="popup-row">
                 <span class="popup-label">Project:</span>
-                <span class="popup-value">${floatData.project_name}</span>
+                <span class="popup-value">${projectName}</span>
+              </div>
+              <div class="popup-row">
+                <span class="popup-label">PI:</span>
+                <span class="popup-value">${piName}</span>
               </div>
               <div class="popup-row">
                 <span class="popup-label">Cycle:</span>
-                <span class="popup-value">#${floatData.cycle_number}</span>
+                <span class="popup-value">#${cycleNumber}</span>
               </div>
               <div class="popup-row">
                 <span class="popup-label">Latitude:</span>
@@ -151,9 +162,6 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
               <div class="popup-row">
                 <span class="popup-label">Last Update:</span>
                 <span class="popup-value">${formatDate(floatData.date_creation)}</span>
-              </div>
-              <div class="popup-detail">
-                <strong>Sampling:</strong> ${floatData.vertical_sampling_scheme}
               </div>
             </div>
           `
@@ -272,6 +280,7 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
         }
         .popup-content {
           min-width: 250px;
+          max-width: 350px;
         }
         .popup-header {
           font-size: 16px;
@@ -280,19 +289,27 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
           margin-bottom: 10px;
           padding-bottom: 8px;
           border-bottom: 2px solid #e0e0e0;
+          word-wrap: break-word;
+          word-break: break-word;
         }
         .popup-row {
           display: flex;
           margin: 8px 0;
+          gap: 8px;
         }
         .popup-label {
           font-weight: 600;
           color: #555;
           min-width: 90px;
+          flex-shrink: 0;
         }
         .popup-value {
           color: #333;
           flex: 1;
+          word-wrap: break-word;
+          word-break: break-word;
+          overflow-wrap: break-word;
+          hyphens: auto;
         }
         .popup-detail {
           margin-top: 12px;
@@ -302,6 +319,8 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
           color: #444;
           font-style: italic;
           line-height: 1.4;
+          word-wrap: break-word;
+          word-break: break-word;
         }
       `}</style>
       <div

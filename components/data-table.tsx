@@ -65,6 +65,7 @@ export function DataTable() {
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(50)
   const [totalRows, setTotalRows] = useState(0)
+  const [totalMeasurements, setTotalMeasurements] = useState(0)
   const [searchTerm, setSearchTerm] = useState("")
   const [showFilters, setShowFilters] = useState(false)
 
@@ -98,6 +99,7 @@ export function DataTable() {
 
     setData(mockData)
     setTotalRows(15234) // Mock total
+    setTotalMeasurements(1847392) // Mock total measurements
     setLoading(false)
   }, [currentPage, pageSize, sortConfig, filters])
 
@@ -153,7 +155,7 @@ export function DataTable() {
         <div className="space-y-1">
           <h2 className="text-2xl font-bold">ARGO Data Browser</h2>
           <p className="text-sm text-muted-foreground">
-            {totalRows.toLocaleString()} profiles • Page {currentPage} of {totalPages}
+            {totalRows.toLocaleString()} profiles • {totalMeasurements.toLocaleString()} measurements • Page {currentPage} of {totalPages}
           </p>
         </div>
 
