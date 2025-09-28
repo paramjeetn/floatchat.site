@@ -26,23 +26,32 @@ function ArgoMapComponent({ className = "" }: ArgoMapProps) {
 
   // Load float data
   useEffect(() => {
-    fetch('/transformed_Data.json')
-      .then(response => {
+    const loadFloatData = async () => {
+      try {
+        console.log('Fetching float data from /transformed_Data.json...')
+        const response = await fetch('/transformed_Data.json')
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          throw new Error(`Failed to load float data: ${response.status} ${response.statusText}`)
         }
-        return response.json()
-      })
-      .then((data: FloatData[]) => {
-        console.log('Loaded float data:', data.length, 'floats')
+
+        const data: FloatData[] = await response.json()
+        console.log('Successfully loaded float data:', data.length, 'floats')
+
+        if (!data || data.length === 0) {
+          throw new Error('No float data found in the JSON file')
+        }
+
         setFloatData(data)
         setIsLoading(false)
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error loading float data:', error)
-        setError(error.message)
+        setError(error instanceof Error ? error.message : 'Failed to load map data')
         setIsLoading(false)
-      })
+      }
+    }
+
+    loadFloatData()
   }, [])
 
   // Initialize map when data is ready
