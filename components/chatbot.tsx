@@ -6,6 +6,7 @@ import type { ReactElement } from "react"
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Send, Bot, TrendingUp, MapPin, Download, HelpCircle, ChevronDown, ChevronRight, Brain, Loader2 } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from "next/image"
@@ -19,11 +20,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts"
-import { AGENT_TEMPLATES, type AgentThought as AgentThoughtType } from "@/lib/mock-agents"
-import mockResponsesData from "@/lib/mock-responses.json"
+import mockData, { type AgentThought } from "@/lib/mock-data"
 import { useToast } from "@/hooks/use-toast"
-
-type AgentThought = AgentThoughtType
 
 interface ChartData {
   month?: string
@@ -66,7 +64,7 @@ export function Chatbot(): ReactElement {
         "🌊 Hello! I'm **FloatChat AI**, your intelligent ARGO oceanographic assistant! \n\nI can help you explore our comprehensive dataset:\n• **179,728** ARGO profiles\n• **117+ million** measurements\n• **786** active floats in the Indian Ocean\n\nWhat oceanographic insights are you looking for today?",
       sender: "bot",
       timestamp: new Date(),
-      suggestedQuestions: Object.keys(mockResponsesData).slice(0, 4),
+      suggestedQuestions: Object.keys(mockData).slice(0, 4),
     },
   ])
   const [inputValue, setInputValue] = useState("")
@@ -74,6 +72,7 @@ export function Chatbot(): ReactElement {
   const [showSuggestions, setShowSuggestions] = useState(true)
   const scrollRef = useRef<HTMLDivElement>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const prevMsgCountRef = useRef<number>(messages.length)
   const prevIsTypingRef = useRef<boolean>(false)
   const { toast } = useToast()
@@ -143,6 +142,11 @@ export function Chatbot(): ReactElement {
     viewport.addEventListener("scroll", onScroll, { passive: true })
     return () => viewport.removeEventListener("scroll", onScroll)
   }, [isTyping, currentResponseId])
+
+  // Auto-resize textarea when inputValue changes externally (e.g., from suggestions)
+  useEffect(() => {
+    autoResizeTextarea()
+  }, [inputValue])
 
   const extractCodeMeta = (snippet: string | undefined): { language: string; content: string } => {
     if (!snippet) return { language: "Code", content: "" }
@@ -295,8 +299,8 @@ export function Chatbot(): ReactElement {
     const typingDelay = 800 + Math.random() * 500
 
     setTimeout(async () => {
-      const mockData = (mockResponsesData as Record<string, any>)[content]
-      const agents = mockData ? generateAgentThoughtsFromMock(mockData) : generateAgentThoughts(content)
+      const mockResponse = mockData[content]
+      const agents = mockResponse ? mockResponse.agentThoughts : generateAgentThoughts(content)
 
       // create bot placeholder message
       const botMessageId = `bot-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
@@ -321,29 +325,6 @@ export function Chatbot(): ReactElement {
     }, typingDelay)
   }
 
-  const generateAgentThoughtsFromMock = (mockData: any): AgentThought[] => {
-    const agents: AgentThought[] = []
-
-    agents.push(AGENT_TEMPLATES.queryUnderstanding(mockData.agentParams))
-    agents.push(AGENT_TEMPLATES.sqlGenerator(mockData.sqlQuery))
-    agents.push(AGENT_TEMPLATES.dataProcessing(mockData.processingStats))
-
-    if (mockData.chartType !== "none") {
-      const chartDescriptions: Record<string, string> = {
-        "depth-profile": "Plotting vertical depth profile with inverted Y-axis following oceanographic convention.",
-        "time-series": "Creating temporal analysis with dual-axis configuration for multi-parameter comparison.",
-        trajectory: "Mapping float drift trajectory showing latitude/longitude evolution over time.",
-      }
-      agents.push(
-        AGENT_TEMPLATES.visualization(
-          mockData.chartType,
-          chartDescriptions[mockData.chartType] || "Generating data visualization.",
-        ),
-      )
-    }
-
-    return agents
-  }
 
   const generateAgentThoughts = (userInput: string): AgentThought[] => {
     const input = userInput.toLowerCase()
@@ -441,13 +422,13 @@ export function Chatbot(): ReactElement {
   const generateBotResponse = async (
     userInput: string,
   ): Promise<{ response: string; suggestions?: string[]; chartData?: ChartData[] }> => {
-    const mockData = (mockResponsesData as Record<string, any>)[userInput]
+    const mockResponse = mockData[userInput]
 
-    if (mockData) {
+    if (mockResponse) {
       return {
-        response: mockData.response,
-        suggestions: mockData.suggestions,
-        chartData: mockData.chartType !== "none" ? mockData.chartData : undefined,
+        response: mockResponse.response,
+        suggestions: mockResponse.suggestions,
+        chartData: mockResponse.chartType !== "none" ? mockResponse.chartData as ChartData[] : undefined,
       }
     }
 
@@ -514,9 +495,46 @@ export function Chatbot(): ReactElement {
     handleSendMessage(suggestion)
   }
 
+  const truncateText = (text: string, maxLength: number = 50): string => {
+    if (text.length <= maxLength) return text
+    return text.substring(0, maxLength) + "..."
+  }
+
+  const autoResizeTextarea = () => {
+    const textarea = textareaRef.current
+    if (!textarea) return
+
+    // Reset height to auto to get the scroll height
+    textarea.style.height = 'auto'
+
+    // Calculate line height (approximately 1.5rem or 24px)
+    const lineHeight = 24
+    const maxLines = 5
+    const maxHeight = lineHeight * maxLines
+
+    // Set height based on scroll height, but max 5 lines
+    const newHeight = Math.min(textarea.scrollHeight, maxHeight)
+    textarea.style.height = `${newHeight}px`
+
+    // Enable/disable scrolling based on content
+    if (textarea.scrollHeight > maxHeight) {
+      textarea.style.overflowY = 'auto'
+    } else {
+      textarea.style.overflowY = 'hidden'
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value)
+    // Auto-resize on next frame to ensure DOM is updated
+    setTimeout(autoResizeTextarea, 0)
+  }
+
   const handleQuickAction = (action: QuickAction) => {
     setInputValue(action.query)
     handleSendMessage(action.query)
+    // Auto-resize after setting value
+    setTimeout(autoResizeTextarea, 0)
   }
 
   return (
@@ -641,7 +659,7 @@ export function Chatbot(): ReactElement {
                       {message.content && (
                         <div className="space-y-4">
                           <div
-                            className={`rounded-2xl px-4 md:px-6 py-3.5 md:py-4 shadow-md text-base leading-relaxed whitespace-pre-wrap ${
+                            className={`rounded-2xl px-4 md:px-6 py-3.5 md:py-4 shadow-md text-base leading-relaxed whitespace-pre-wrap break-words ${
                               message.sender === "user"
                                 ? "bg-primary text-primary-foreground rounded-br-sm"
                                 : "bg-card text-card-foreground border border-border rounded-bl-sm"
@@ -842,8 +860,9 @@ export function Chatbot(): ReactElement {
                           size="sm"
                           className="rounded-full text-sm px-4 md:px-5 py-2 bg-muted/40 border-transparent text-foreground hover:bg-muted hover:text-foreground"
                           onClick={() => handleSuggestionClick(suggestion)}
+                          title={suggestion.length > 50 ? suggestion : undefined}
                         >
-                          {suggestion}
+                          {truncateText(suggestion)}
                         </Button>
                       ))}
                     </div>
@@ -855,16 +874,18 @@ export function Chatbot(): ReactElement {
         </ScrollArea>
         <div className="p-4 md:p-6 bg-transparent">
           <div className="max-w-4xl mx-auto bg-card rounded-2xl shadow-lg border border-border/50 backdrop-blur-sm p-3 md:p-4">
-            <div className="flex items-center gap-3">
-              <Input
+            <div className="flex items-end gap-3">
+              <Textarea
+                ref={textareaRef}
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
                 placeholder="Type your message..."
-                className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 resize-none min-h-[40px] max-h-[120px]"
                 onKeyPress={handleKeyPress}
+                rows={1}
               />
               <Button
-                onClick={handleSendMessage}
+                onClick={() => handleSendMessage()}
                 disabled={isTyping || inputValue.trim().length === 0}
                 className="rounded-xl shrink-0"
               >
